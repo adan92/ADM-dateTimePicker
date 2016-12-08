@@ -60,7 +60,7 @@ gulp.task('templates', function() {
         .pipe(rename(packageName + '-templates.js'))
         .pipe(gulp.dest('dist'));
 });
-
+gulp.task('buildapp', ['templates', 'scripts']);
 gulp.task('serve', function() {
     browserSync({
         notify: false,

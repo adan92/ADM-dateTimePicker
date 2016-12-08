@@ -21,4 +21,5 @@ Number.prototype.lZero = function() {
     return (this<10 ? '0'+this : this);
 };
 var module = angular.module('ADM-dateTimePicker', [
+    'ADM-dateTimePicker.templates'
 ]);
