@@ -198,8 +198,10 @@ function ADMdtpCalendarDirective(ADMdtp, ADMdtpConvertor, ADMdtpFactory, constan
             scope.calTypeChanged = function() {
                 scope.calType = (scope.calType=='gregorian')?'jalali':'gregorian';
 
-                scope.monthNames = constants.calendars[scope.calType].monthsNames;
-                scope.daysNames = constants.calendars[scope.calType].daysNames;
+                scope.monthNames = scope.option.monthsNames || constants.calendars[scope.calType].monthsNames;
+                scope.daysNames = scope.option.daysNames || constants.calendars[scope.calType].daysNames;
+
+
 
                 var _cur = angular.copy(scope.current);
                 var _mainDate;
@@ -212,12 +214,23 @@ function ADMdtpCalendarDirective(ADMdtp, ADMdtpConvertor, ADMdtpFactory, constan
                     _mainDate = new Date(_mainDate.year, _mainDate.month-1, _mainDate.day);
                 }
 
+
                 if (scope.dtpValue) {
                     admDtp.updateMasterValue(ADMdtpFactory.convertFromUnix(scope.dtpValue.unix, scope.calType));
                 }
 
                 admDtp.fillDays(_mainDate, true);
 
+            }
+            scope.todayStr = (scope.calType=="jalali") ? "امروز" : "Today";
+            scope.gregorianStr = 'Gregorian';
+
+            if (scope.option.todayStr) {
+                scope.todayStr = scope.option.todayStr;
+            }
+
+            if (scope.option.gregorianStr) {
+                scope.gregorianStr = scope.option.gregorianStr;
             }
 
 
