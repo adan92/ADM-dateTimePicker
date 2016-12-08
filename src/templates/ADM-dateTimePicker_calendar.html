@@ -78,9 +78,8 @@
     <hr>
     <footer>
         <div class="calTypeContainer" ng-class="$parent.calType" ng-click="calTypeChanged()" ng-if="option.multiple">
-            <p class="gregorian">
-                Gregorian
-            </p>
+            <p class="gregorian">{{gregorianStr}}</p>
+
             <p class="jalali">جلالی</p>
         </div>
         <button class="today" ng-click="today()">{{(calType=="jalali")?"امروز":"Today"}}</button>

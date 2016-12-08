@@ -29,8 +29,9 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                 scope.option = angular.extend(angular.copy(ADMdtp.getOptions()), _options);
                 scope.disableDays = ADMdtpFactory.parseDisablePattern(scope.option);
                 scope.calType = scope.option.calType;
-                scope.monthNames = constants.calendars[scope.calType].monthsNames;
-                scope.daysNames = constants.calendars[scope.calType].daysNames;
+                scope.monthNames = scope.option.monthsNames || constants.calendars[scope.calType].monthsNames;
+                scope.daysNames = scope.option.daysNames || constants.calendars[scope.calType].daysNames;
+
                 scope.timeoutValue = [0,0];
 
                 scope.minDate = scope.mindate?new Date(scope.mindate):null;
