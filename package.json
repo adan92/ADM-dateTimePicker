@@ -3,7 +3,26 @@
   "version": "1.1.4",
   "description": "Pure AngularJs Gregorian and Jalali smart dateTimePicker",
   "main": "ADM-dateTimePicker.js",
+  "devDependencies": {
+    "bower": "latest",
+    "browser-sync": "latest",
+    "gulp": "latest",
+    "gulp-angular-templatecache": "latest",
+    "gulp-concat": "latest",
+    "gulp-jshint": "^2.0.2",
+    "gulp-minify-css": "^1.2.2",
+    "gulp-minify-html": "latest",
+    "gulp-rename": "latest",
+    "gulp-sass": "^2.1.1",
+    "gulp-uglify": "latest",
+    "gulp-wrap": "latest",
+    "jshint": "^2.9.4",
+    "shelljs": "latest"
+  },
   "scripts": {
+    "prestart": "bower install",
+    "start": "npm install",
+    "poststart": "gulp",
     "test": "karma"
   },
   "repository": {
@@ -27,5 +46,8 @@
   "bugs": {
     "url": "https://github.com/AmirkabirDataMiners/ADM-dateTimePicker/issues"
   },
-  "homepage": "https://github.com/AmirkabirDataMiners/ADM-dateTimePicker"
+  "homepage": "https://github.com/AmirkabirDataMiners/ADM-dateTimePicker",
+  "dependencies": {
+    "gulp-sourcemaps": "^1.9.1"
+  }
 }
