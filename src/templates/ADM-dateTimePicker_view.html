@@ -1,9 +1,9 @@
 <div class="ADMdtp-container" ng-class="{rtl: (calType==\'jalali\'), touch: option.isDeviceTouch, disable: disable}">
     <div class="clickOutContainer" click-out="closeCalendar()">
         <ng-transclude></ng-transclude>
-        <div ng-if="defaultTemplate" class="masterInput" ng-class="{touch: option.isDeviceTouch, disable: disable, open: showCalendarStat}">
+        <div ng-if="defaultTemplate" class="" layout="row" layout-align="center center" ng-class="{touch: option.isDeviceTouch, disable: disable, open: showCalendarStat}">
             <input type="text" ng-model="dtpValue.formated" ng-focus="openCalendar()" ng-disabled="option.freezeInput || option.isDeviceTouch || disable" ng-blur="modelChanged()">
-            <div class="iconContainer" ng-click="toggleCalendar()">
+            <!--<div class="iconContainer" ng-click="toggleCalendar()">
                 <i class="dtpIcon null fakeIcon"></i>
                 <svg class="calendarIcon" viewBox="0 0 1664 1664">
                     <use xlink:href="#dtpCalendar" />
@@ -13,7 +13,7 @@
             </div>
             <svg class="removeIcon" viewBox="0 0 1408 1408" ng-if="dtpValue.formated" ng-click="destroy()">
                 <use stroke-width="20" xlink:href="#dtpTimes" />
-            </svg>
+            </svg>-->
         </div>
     </div>
     <svg style="display:none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
