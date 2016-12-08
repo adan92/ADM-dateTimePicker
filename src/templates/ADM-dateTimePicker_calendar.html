@@ -6,7 +6,7 @@
             </svg>
         </i>
         <div class="content">
-            <div class="monthContainer" ng-class="{onYear: yearSelectStat, rtl: (calType==\'jalali\')}">
+            <div class="monthContainer" ng-class="{onYear: yearSelectStat, rtl: (calType=='jalali')}">
                 <div class="yearContainer">
 <span ng-if="yearSelectStat" class="dtpIcon arrow left" ng-click="previousYear()">
 </span>
@@ -84,8 +84,10 @@
             <p class="jalali">جلالی</p>
         </div>
         <button class="today" ng-click="today()">{{(calType=="jalali")?"امروز":"Today"}}</button>
-        <svg class="timeSelectIcon" viewBox="0 0 1492 1592" ng-click="timePickerStat = !timePickerStat">
-            <use xlink:href="#dtpClock"/>
-        </svg>
+        <div ng-show="!option.hideTimeSelector">
+            <svg class="timeSelectIcon" viewBox="0 0 1492 1592" ng-click="timePickerStat = !timePickerStat">
+                <use xlink:href="#dtpClock"/>
+            </svg>
+        </div>
     </footer>
 </div>
