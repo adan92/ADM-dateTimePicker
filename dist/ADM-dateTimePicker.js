@@ -24,12 +24,16 @@ Number.prototype.lZero = function() {
     return (this<10 ? '0'+this : this);
 };
 var module = angular.module('ADM-dateTimePicker', [
-    'ADM-dateTimePicker.templates'
+    'ADM-dateTimePicker.templates',
+    "ngMaterial",
+    "ngAnimate",
+    "ngAria",
+    "ngMessages"
 ]);
 
-module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'constants', '$compile', '$timeout', ADMdtpDirective]);
+module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'constants', '$compile', '$timeout','$mdDialog', ADMdtpDirective]);
 
-    function ADMdtpDirective (ADMdtp, ADMdtpConvertor, ADMdtpFactory, constants, $compile, $timeout) {
+    function ADMdtpDirective (ADMdtp, ADMdtpConvertor, ADMdtpFactory, constants, $compile, $timeout,$mdDialog) {
 
         return {
             restrict: 'E',
@@ -43,7 +47,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                 onDatechange: '&',
                 onTimechange: '&',
                 onOpen: '&',
-                onClose: '&',
+                onClose: '&'
             },
             link: function(scope, element, attrs, ngModel) {
                 if (!element.find('ng-transclude').children().length) {
@@ -94,7 +98,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                             maxDate: scope.maxDate,
                             calType: scope.calType,
                             format: scope.option.format
-                        }
+                        };
 
                         ngModel.$setViewValue( scope.dtpValue.formated );
                         ngModel.$render();
@@ -112,7 +116,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                         }
 
                     });
-                }
+                };
 
                 scope.parseInputValue = function(valueStr, resetTime, releaseTheBeast) {
 
@@ -143,7 +147,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                             day: _dateTime.day || _dateTime.getDate(),
                             unix: _dateTime.unix || _dateTime.getTime(),
                             fullDate: _dateTime.gDate || _dateTime
-                        }
+                        };
 
                         scope.dtpValue.fullDate = ADMdtpFactory.removeTime(scope.dtpValue.fullDate);
                         scope.dtpValue.unix = scope.dtpValue.fullDate.getTime();
@@ -151,7 +155,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                         scope.time = {
                             hour: ( _dateTime.getHours?_dateTime.getHours():_dateTime.hour ).lZero(),
                             minute: ( _dateTime.getMinutes?_dateTime.getMinutes():_dateTime.minute ).lZero()
-                        }
+                        };
 
                         scope.updateMasterValue(false, releaseTheBeast);
                     }
@@ -162,7 +166,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                                 minute: '00'
                             }
                     }
-                }
+                };
                 scope.parseInputValue(ngModel.$viewValue || scope.option.default, true, false);
 
                 ngModel.$formatters.push(function (val) {
@@ -221,19 +225,19 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                         var _corner = {
                             x: _inputBound.left,
                             y: _inputBound.top + _inputBound.height
-                        }
+                        };
 
                         var _totalSize = {
                             width: _elementBound.width + _corner.x,
                             height: _elementBound.height + _corner.y
-                        }
+                        };
 
                         var _pos = {
                             top: '',
                             bottom: '',
                             left: '',
                             right: ''
-                        }
+                        };
                         if (_totalSize.height > window.innerHeight)
                             _pos.bottom = _inputBound.height + 'px';
                         else
@@ -250,7 +254,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
 
                     if (scope.onOpen)
                         scope.onOpen();
-                }
+                };
 
                 scope.closeCalendar = function() {
                     if (!scope.showCalendarStat)
@@ -269,14 +273,14 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                             scope.onClose();
                     }
 
-                }
+                };
 
                 scope.toggleCalendar = function() {
                     if (scope.showCalendarStat)
                         scope.closeCalendar();
                     else
                         scope.openCalendar();
-                }
+                };
 
                 scope.destroy = function() {
                     if (scope.disable)
@@ -295,11 +299,11 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                     scope.fullData = {
                         minDate: scope.minDate,
                         maxDate: scope.maxDate
-                    }
+                    };
                     scope.time = {
                         hour: '00',
                         minute: '00'
-                    }
+                    };
                     var _standValue = new Date();
 
                     if (scope.calType == 'jalali')
@@ -312,12 +316,12 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
 
                     if (scope.onChange)
                         scope.onChange({date:scope.fullData});
-                }
+                };
 
                 var dtpInput = element[0].querySelector('[dtp-input]') || {};
                 dtpInput.onblur = function() {
                     scope.modelChanged(this.value);
-                }
+                };
                 dtpInput.onfocus = scope.openCalendar;
 
                 var dtpOpen = element[0].querySelector('[dtp-open]') || {};
@@ -337,7 +341,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
 
                     this.updateMasterValue = function(newDate, releaseTheBeast) {
                         $scope.updateMasterValue(newDate, releaseTheBeast);
-                    }
+                    };
 
                     this.fillDays = function(date, noTransition) {
 
@@ -358,7 +362,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                             year: date.getFullYear(),
                             month: date.getMonth()+1,
                             day: date.getDate()
-                        }
+                        };
 
                         $scope.$applyAsync(function() {
                             var _month = _mainDate.month || (_mainDate.getMonth()+1);
@@ -445,7 +449,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                                 unix: _unix,
                                 valid: _valid,
                                 isMin: _isMin
-                            }
+                            };
 
                             if (ADMdtpFactory.isDayDisable($scope.calType, $scope.disableDays, _day))
                                 _day.valid = 0;
@@ -470,7 +474,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                             });
 
                         }, $scope.timeoutValue[0]);
-                    }
+                    };
 
                     this.reload = function() {
                         var _cur = angular.copy($scope.current);
@@ -479,7 +483,7 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                         if ($scope.calType == 'jalali')
                             _date = _cur;
                         this.fillDays(_date, !$scope.option.transition);
-                    }
+                    };
 
                     $scope.fillDays = this.fillDays;
                 }

@@ -82,7 +82,7 @@
 
             <p class="jalali">جلالی</p>
         </div>
-        <button class="today" ng-click="today()">{{(calType=="jalali")?"امروز":"Today"}}</button>
+        <button class="today" ng-click="today()">{{todayStr}}</button>
         <div ng-show="!option.hideTimeSelector">
             <svg class="timeSelectIcon" viewBox="0 0 1492 1592" ng-click="timePickerStat = !timePickerStat">
                 <use xlink:href="#dtpClock"/>
