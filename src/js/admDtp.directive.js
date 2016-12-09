@@ -206,19 +206,27 @@ module.directive('admDtp',  ['ADMdtp', 'ADMdtpConvertor', 'ADMdtpFactory', 'cons
                             left: '',
                             right: ''
                         };
-                        if (_totalSize.height > window.innerHeight)
-                            _pos.bottom = _inputBound.height + 'px';
-                        else
-                            _pos.top = _inputBound.height + 'px';
+                        if (scope.option.position) {
+                            if(scope.options.position==='bottom'){
+                                _pos.bottom = _inputBound.height + 'px';
+                            }else if(scope.options.position==='top'){
+                                _pos.top = _inputBound.height + 'px';
+                            }
+                        }else {
+                            if (_totalSize.height > window.innerHeight)
+                                _pos.bottom = _inputBound.height + 'px';
+                            else
+                                _pos.top = _inputBound.height + 'px';
+                        }
 
                         if (_totalSize.width > window.innerWidth)
                             _pos.left = (window.innerWidth - _totalSize.width - 20) + 'px';
                         else
                             _pos.left = 0;
-
                         angular.element(_element).css({top: _pos.top, bottom: _pos.bottom, left: _pos.left, opacity: 1});
 
                     }, 70);
+
 
                     if (scope.onOpen)
                         scope.onOpen();

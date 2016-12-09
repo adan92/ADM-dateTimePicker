@@ -24,6 +24,5 @@ var module = angular.module('ADM-dateTimePicker', [
     'ADM-dateTimePicker.templates',
     "ngMaterial",
     "ngAnimate",
-    "ngAria",
-    "ngMessages"
+    "ngAria"
 ]);
