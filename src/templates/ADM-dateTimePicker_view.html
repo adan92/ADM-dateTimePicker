@@ -2,7 +2,7 @@
     <div class="clickOutContainer" click-out="closeCalendar()">
         <ng-transclude></ng-transclude>
         <div ng-if="defaultTemplate" class="" layout="row" layout-align="center center" ng-class="{touch: option.isDeviceTouch, disable: disable, open: showCalendarStat}">
-            <input type="text" ng-model="dtpValue.formated" ng-focus="openCalendar()" ng-disabled="option.freezeInput || option.isDeviceTouch || disable" ng-blur="modelChanged()">
+            <input type="text" ng-readonly="option.isReadOnly" ng-model="dtpValue.formated" ng-focus="openCalendar()" ng-disabled="option.freezeInput || option.isDeviceTouch || disable" ng-blur="modelChanged()">
         </div>
     </div>
     <svg style="display:none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
