@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo" ng-cloak>
+<head>
+    <meta charset="UTF-8">
+    <title>ADM-dateTimePicker</title>
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        [ng-cloak] {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="/dist/ADM-dateTimePicker.css">
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="/dist/ADM-dateTimePicker.js"></script>
+    <script src="/dist/ADM-dateTimePicker-templates.js"></script>
+
+    <script>
+        angular.module('demo', ['ngMaterial','ADM-dateTimePicker']).controller('demoController', ['$scope', function ($scope) {
+            'use strict';
+            $scope.config={
+                calType: 'gregorian',
+                dtpType:'date&time',
+                format: 'DD/MM/YYYY hh:mm',
+                default: 'today',
+                isReadOnly:true,
+                autoClose:false,
+                multiple:false,
+                todayStr:'Hoy',
+                position:'top',
+                daysNames:['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+                monthsNames:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+            };
+        }]);
+    </script>
+</head>
+<body ng-controller="demoController" style="padding: 10px 20px;">
+<h4>DateTime Picker</h4>
+<md-input-container class="md-block">
+<adm-dtp ng-model='atendida' name="fecha_termino" options="config" required=""></adm-dtp>
+
+</md-input-container>
+
+</body>
+</html>
